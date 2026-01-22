@@ -24,7 +24,13 @@
 
   <main>
     <section class="hero" id="top">
-      <div class="container hero-card">
+      <div class="blobs" aria-hidden="true">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+      </div>
+
+  <div class="container hero-card reveal">
         <div class="badge" aria-label="Location">
           📍 Berlin, Germany
         </div>
@@ -68,7 +74,7 @@
     </section>
 
     <section class="section" id="projects">
-      <div class="container">
+      <div class="container reveal">
         <h2>Featured Projects</h2>
         <p class="kicker">Selected work across expansion strategy, fundraising, product transformation, and growth.</p>
 
@@ -239,7 +245,7 @@
     </section>
 
     <section class="section" id="experience">
-      <div class="container">
+      <div class="container reveal">
         <h2>Experience</h2>
         <p class="kicker">Strategy and growth experience across fintech, travel tech, e-commerce, and consulting.</p>
 
@@ -341,7 +347,7 @@
     </section>
 
     <section class="section" id="skills">
-      <div class="container">
+      <div class="container reveal">
         <h2>Skills</h2>
         <p class="kicker">A mix of strategic, analytical, product, and leadership capabilities.</p>
 
@@ -396,7 +402,7 @@
     </section>
 
     <section class="section" id="education">
-      <div class="container">
+      <div class="container reveal">
         <h2>Education</h2>
         <p class="kicker">Academic background across business and engineering.</p>
 
@@ -454,7 +460,16 @@
   </main>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const els = document.querySelectorAll(".reveal");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add("show");
+    });
+  }, { threshold: 0.12 });
+
+  els.forEach(el => io.observe(el));
+</script>
 </body>
 </html>
